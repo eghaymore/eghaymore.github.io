@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>Order | Leon Pizzeria</title>
+		<link href="css/style.css" rel="stylesheet" type="text/css">
+	</head>
+	<body>
+		<nav>
+			<h1>Order</h1>
+			<ul>
+				<li><a href="index.html">Home</a></li>
+				<li><a href="contact.html">Contact</a></li>
+				<li><a href="about.html">About</a></li>
+				<li><a href="order.html">Order</a></li>
+				<li><a href="specials.html">Specials</a></li>
+			</ul>
+		</nav>
+		<div class="logo">
+			<h1 class="logo">Leon</h1>
+			<h1 class="sublogo">pizzeria</h1>
+			<div id="logo"></div>
+			<div id="copy">authentic mexican pizza</div>
+		</div>
+		<main>
+		<form action="https://www.stonecoldprofessor.com/pizza-order.php" method="post">
+		<h1 class="info">Pick Your Pizza!</h1>
+		<img src="img/migueldeleon.jpg" id="miguel">
+		<div id="miguelsig">~Miguel De Leon</div>
+		<h1 class="cat">Size</h1>
+		<div class="size">
+			<br>
+			<label for="small">Small</label>
+			<input type="radio" name="size" id="small" value="Small">
+			<label for="medium">Medium</label>
+			<input type="radio" name="size" id="medium" value="Medium">
+			<label for="large">Large</label>
+			<input type="radio" name="size" id="large" value="Large">
+			<label for="x-large">X-Large</label>
+			<input type="radio" name="size" id="x-large" value="X-Large">
+		</div>
+		<h1 class="cat">Crust</h1>
+		<div class="crust">
+			<select name="crust">
+				<option value="tortilla">Tortilla</option>
+				<option value="thin">Thin</option>
+				<option value="thick">Thick</option>
+				<option value="pan">Pan</option>
+			</select>
+		</div>
+		<div class="toppings">
+			<div class="labelcont">
+				<label for="pepperoni">Pepperoni</label>
+				<input type="checkbox" name="toppings[]" id="pepperoni" value="pepperoni">
+			</div>
+			<div class="labelcont">
+				<label for="olives">Olives</label>
+				<input type="checkbox" name="toppings[]" id="olives" value="olives">
+			</div>
+			<div class="labelcont">
+				<label for="ham">Ham</label>
+				<input type="checkbox" name="toppings[]" id="ham" value="ham">
+			</div>
+			<div class="labelcont">
+				<label for="chorizo">Chorizo</label>
+				<input type="checkbox" name="toppings[]" id="chorizo" value="chorizo">
+			</div>
+			<div class="labelcont">
+				<label for="pineapple">Pineapple</label>
+				<input type="checkbox" name="toppings[]" id="pineapple" value="pineapple">
+			</div>
+			<div class="labelcont">
+				<label for="beans">Beans</label>
+				<input type="checkbox" name="toppings[]" id="beans" value="beans">
+			</div>
+			<div class="labelcont">
+				<label for="chicken">Chicken</label>
+				<input type="checkbox" name="toppings[]" id="chicken" value="chicken">
+			</div>
+			<div class="labelcont">
+				<label for="bellpepper">Bell Pepper</label>
+				<input type="checkbox" name="toppings[]" id="bellpepper" value="bellpepper">
+			</div>
+		</div>
+		<div class="icons">
+			<img src="img/pep.jpg">
+			<img src="img/olive.jpg">
+			<img src="img/ham.jpg">
+			<img src="img/chorizo.jpg">
+			<img src="img/pine.jpg">
+			<img src="img/beans.jpg">
+			<img src="img/chicken.jpg">
+			<img src="img/bell.jpg">
+		</div>
+		<div class="inputfields1">
+				<input type="text" name="first" placeholder="First Name" required>
+				<input type="text" name="last" placeholder="Last Name" required>
+				<input type="text" name="add1" placeholder="Address" required>
+				<input type="text" name="city" placeholder="City" required>
+			</div>
+			<div class="inputfields2">
+				<input type="text" name="zip" placeholder="Zipcode" required>
+				<input type="text" name="state" placeholder="State"required>
+				<input type="text" name="phone" placeholder="Phone Number" required>
+				<input type="text" name="email" placeholder="Email Address"required>
+			</div>
+		<div class="txt">
+				<textarea name="comments" placeholder="Comments"></textarea>
+			</div>
+		<div class="submission">
+				<input type="reset" value="Clear" class="inputc2">
+				<input type="submit" value="Send" class="inputc2">
+			</div>
+		</form>
+		<div class="infowrap">
+			<p>
+				Online orders are only valid for addresses in districts 1-4. Please allow for up to 45 minutes of delivery time for orders in D1, and up to an hour for orders in D2, D3, and D4. Please call during business hours to inquire about deliviries to D5 and D6. We have currently suspended all deliviries to D7 and D8 due to construction.
+			</p>
+		</div>
+		</main>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</body>
+</html>

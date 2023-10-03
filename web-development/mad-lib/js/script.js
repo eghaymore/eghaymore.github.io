@@ -1,0 +1,10 @@
+var oone = prompt("Enter 0 for a tropical adventure \n" + "Enter 1 for an icy journey");
+var noun1 = prompt("Enter your first noun");
+var verb1 = prompt("Enter a simple present tense verb");
+var adj1 = prompt("You must enter an adjective");
+var noun2 = prompt("Enter a plural noun");
+var adv1 = prompt("Enter an adverb");
+var verb2 = prompt("Enter a present tense continuous verb");
+var adj2 = prompt("Enter an adjective with an air of seriousness");
+var adj3 = prompt("Enter your last adjective");
+var noun3 = prompt("Enter your last noun");

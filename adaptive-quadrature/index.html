@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>Edward Haymore</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, inital-scale=1.0, minimum-scale=1.0, user-scalable=no">
+		<link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css">
+		<link href="../css/style.css" rel="stylesheet" type="text/css">
+		<link href="../css/prism.css" rel="stylesheet" type="text/css">
+		<script src="../js/jquery-3.5.1.min.js"></script>
+		<script src="../js/bootstrap.bundle.js"></script>
+		<script src="../js/prism.js"></script>
+	</head>
+	<body>
+		<nav class="navbar navbar-dark navbar-expand-md p-md-3">
+			<a href="../index.html"class="navbar-brand text-muted">Edward Haymore</a>
+			<button class="navbar-toggler" data-target="#nav-menu" data-toggle="collapse"><span class="navbar-toggler-icon"></span></button>
+			<div id="nav-menu" class="collapse navbar-collapse justify-content-center">
+				<ul class="navbar-nav">
+					<li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+					<li class="nav-item"><a href="resume.html" class="nav-link">Resume</a></li>
+				</ul>
+			</div>
+		</nav>
+		<main class="jumbotron shadow-lg">
+			<h1>Adaptive Quadrature</h1>
+			<pre>
+				<code class='language-Python'>
+'''
+computes the area between the curve of a function, func(x), and the x-axis on the interval [a, b].
+error tolerance: 5.0e-6. 
+'''
+fevals = 0#global
+import numpy as np
+import math
+def area(func, a, b, tol = 5.0 * 10**(-5)):# driver
+    # fix a&lt;b
+    if a == b:
+        return None # integrating over no interval
+    if not b&gt'a:
+        a, b = b, a
+        _func = func
+        func = lambda x: _func(x) * -1# test me
+    # ---------------------------------------------
+    h = .5 # initial step size
+    global fevals
+    fevals = 0
+    s1 = simpsons(func, a, b, h)
+    s2 = simpsons(func, a, b, h/2)
+    e2 = abs((s2-s1))/15
+    if tol&gt;e2:
+        return s2
+    while tol&lt;e2:
+        h *= .5
+        tol *= .5
+        s1 = s2
+        s2 = simpsons(func, a, b, h/2)
+        e2 = abs((s2-s1))/15
+    return s2
+
+def simpsons(func,a, b, h):
+    num_terms = int((abs(b-a)/h) + 1)
+    x = np.linspace(a,b,num_terms)
+    y = [func(xi) if not math.isnan(func(xi)) else func(np.nextafter(xi,xi + 1)) for xi in x]
+    global fevals
+    fevals += num_terms
+    coeff = 4
+    i = 1
+    for yi in y[1:len(y)-1]: # add coefficients 
+        y[i] = yi*coeff
+        i += 1
+        if coeff == 4:
+            coeff = 2
+        else:
+            coeff = 4
+    sol = sum(y)*(h/3)
+    return sol
+
+def main():
+    '''
+    Demo on known integrals
+    '''
+    f1 = lambda x: np.exp(x**2)
+    f2 = lambda x: np.sin(x)/x
+    print('Integrate e^(x^2) over the interval [-1,1]: ')
+    print(area(f1, -1, 1))#example 1
+    print('Function evaluations: ', fevals,'\n----------------------------')
+    print('Integrate sin(x)/x over the interval [0,1]: ')
+    print(area(f2, 0, 1))#example 2
+    print('Function evaluations: ', fevals,'\n----------------------------')
+    print('Integrate sin(x)/x over the interval [-1,10]: ')
+    print(area(f2, -1, 10))#example 3
+    print('Function evaluations: ', fevals,'\n----------------------------')
+if __name__ == "__main__":
+    main()
+				</code>
+			</pre>
+		</main>
+		
+		
+	</body>
+</html>

@@ -1,0 +1,44 @@
+*{margin:0; padding:0; box-sizing:border-box;user-select:none;}
+html {background-color: darkgray; --bg-color:#af3257;--mainfont:whitesmoke;--tertiary:#033159;--lightone:#0F698C;}
+body, nav, .jumbotron, aside {width:96vw;}
+body {height: 100vh; margin: 0 auto; background-color: darkgray;}
+nav {background: linear-gradient(to bottom, var(--tertiary), var(--lightone)); border-radius: 10px; margin-bottom: 1vh;}
+input#reflection {display: none;}
+input#reflection + small {display: none;}
+input#reflection:checked + small {display: block;}
+div.reflwrap {display: flex; justify-content:center; text-align: center;}
+label#refllabel {font-size: 24px; color: gray; padding: 5px;}
+label#refllabel:hover {cursor:pointer; color: yellow;}
+#mymsg1 {display:none;}
+#mymsg2 {padding-left:4vw;display:none;}
+div.jumbotron {background-color:var(--lightone);}
+.jumbotron{margin-bottom:.5rem;}
+main a{color:var(--mainfont);}
+h4, h5, #mymsg2 {color:var(--mainfont);}
+blockquote::before {content:'"';}
+blockquote::after {content:'"';}
+@media only screen and (min-width:576px)
+{
+#mymsg1{font-size:30px;display:block}
+#mymsg2{font-size:18px;display:block;}
+#smlmsg{display:none;}
+main a{font-size:20px; transition: 0ms;padding:10px;}
+main a:hover{font-size: 22px; color: red; font-weight:bold;}
+}
+@media only screen and (min-width:800px)
+{
+	body, nav, .jumbotron, aside {width:97vw;}
+}
+
+main.jumbotron{position:relative; background-image:url(../img/web.jpg); background-size:200%; animation: spin 60s infinite linear;}
+@keyframes spin
+{
+	/* 0%{transform:rotateX(0deg);} */
+	/* 10%{transform:rotateX(36deg);} */
+	/* 100%{transform:rotateX(360deg);} */
+	0%{background-size:200%;}
+	25%{background-size:220%}
+	50%{background-size:240%}
+	75%{background-size:220%}
+	100%{background-size:200%;}
+}

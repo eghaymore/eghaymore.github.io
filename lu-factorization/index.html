@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>Edward Haymore</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, inital-scale=1.0, minimum-scale=1.0, user-scalable=no">
+		<link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css">
+		<link href="../css/style.css" rel="stylesheet" type="text/css">
+		<link href="../css/prism.css" rel="stylesheet" type="text/css">
+		<script src="../js/jquery-3.5.1.min.js"></script>
+		<script src="../js/bootstrap.bundle.js"></script>
+		<script src="../js/prism.js"></script>
+	</head>
+	<body>
+		<nav class="navbar navbar-dark navbar-expand-md p-md-3">
+			<a href="../index.html"class="navbar-brand text-muted">Edward Haymore</a>
+			<button class="navbar-toggler" data-target="#nav-menu" data-toggle="collapse"><span class="navbar-toggler-icon"></span></button>
+			<div id="nav-menu" class="collapse navbar-collapse justify-content-center">
+				<ul class="navbar-nav">
+					<li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+					<li class="nav-item"><a href="resume.html" class="nav-link">Resume</a></li>
+				</ul>
+			</div>
+		</nav>
+		<main class="jumbotron shadow-lg">
+			<h1>LU Factorization</h1>
+			<pre>
+				<code class='language-Python'>
+import os
+import numpy as np
+def factor(A, n):
+    '''
+    -------------NOTE----------
+    pivot is not an argument
+    i just initialize it here 
+    ---------------------------
+    A is the square matrix of coefficients
+    n is the rank (number of rows/columns) of A
+    return: (lower, upper(A after decomposition), pivot)
+    pivot is an output vector that records the partial pivoting swaps
+    '''
+    pivot = [] # stores tuples that indicate which rows were swapped
+    # initialize the lower matrix
+    lower = np.eye(n)
+
+    #-------------------------------do all permutations
+    for col in range(n-1):
+        # Get the index of the element with the largest absolute value in column col
+        max_abs_index = np.argmax(np.abs(A[col:, col])) + col # adjust by col
+        if A[max_abs_index, col] == 0 :
+            return -1# singular matrix
+        # swap R1 with Rmax_abs_index
+        if max_abs_index != col:
+            # swap rows
+            A[[col, max_abs_index]] = A[[max_abs_index, col]]
+            pivot.append((col, max_abs_index))
+
+    #-----------------------------decompose by column
+    for col in range(n-1):        
+        for row in range(col + 1, n):
+            if A[row,col] != 0: # if the entry we want to eliminate is 0, move on
+                coeff = abs(A[row,col]/A[col, col]) # pivot location is == col
+                if (coeff*A[col, col] )* A[row, col] > 0:
+                    coeff = coeff * -1 # fix coeff to be opposite sign of entry we are eliminating
+                # Rx <-- Rx + (coeff)*R1
+                for i in range(n):
+                    A[row, i] += coeff * A[col, i] # pivot location is == col
+                # update the lower matrix
+                lower[row, col] += coeff * -1 # adjusted
+
+    return (lower, A, pivot)
+def solve(l, u, n, pivot, b):
+    '''
+    --------------------NOTE--------------------------------------------------------------------
+    A, n and pivot are from factor() (A is overwritten with its own LU factorization)
+    --------------not using A, the combined LU, instead using the l and u seperately here-------
+    --------------------------------------------------------------------------------------------
+    n is the number of dimensions of the matrix
+    b is a right-hand side to solve for
+    pivot stores tuples that indicate which rows were swapped
+    return: sol is an output vector with the solution of Ax = b
+    '''
+    # perform permutations on b
+    for tup in pivot:
+        # swap rows
+        b[[tup[0], tup[1]]] = b[[tup[1], tup[0]]]
+
+    # L(U(x)) = b
+    # U(x) = z
+    # z = np.linalg.solve(l, b) # forward pass ----testing purposes
+    #-----------forward pass-----------------
+    z = [b[0]/l[0,0]]
+    for i in range(1,n):
+        x = b[i]
+        colCount = 0
+        for coeff in z:
+            x -= coeff*l[i,colCount]
+            colCount+=1
+        x = x/l[i,i]
+        z.append(x)
+    #----------------------------------------
+    # output = np.linalg.solve(u, z) # backward pass ----testing purposes
+    #-------------------backwards pass-------------
+    sol = np.array([z[n-1]/u[n-1,n-1]])
+    for i in range(n-2, -1, -1):
+        y = z[i]
+        colCount = n-1
+        for coeff in reversed(sol):
+            y -= coeff*u[i, colCount]
+            colCount -= 1
+        y = y/u[i,i]
+        sol = np.insert(sol, 0, y)
+    return sol
+
+def main():
+    # Change the working directory to the current folder
+    new_directory = "lu-factorization"
+    os.chdir(new_directory)
+
+    file_list = ['lu1.dat', 'lu2.dat']
+    # process file
+    # Open the .dat file in read mode
+    for file_path in file_list:
+        with open(file_path, 'r') as file:
+            file_contents = file.readlines()# read the file line by line
+            dim = int(file_contents[0])# get the matrix dimensions
+
+            # get the matrix
+            matrix = []
+            for line in file_contents[1:dim + 1]:
+                vals = line.split()
+                # Convert the values to float
+                row = [float(value) for value in vals]
+                
+                # Append the row to the matrix
+                matrix.append(row)
+            # Convert the matrix to a NumPy array
+            matrix = np.array(matrix)
+            if matrix.shape != (dim, dim):
+                print('Expecting ', dim, ' dimensions but found ', matrix.shape)
+                continue
+            #----------------------------------------------
+            # get the number of right hand side solutions
+            num_R = int(file_contents[dim + 1])
+            rh_vectors = [] # store right hand vectors
+            for line in file_contents[dim+2:]:
+                vals = line.split()
+                # Convert the values to float
+                rh_vector = [float(value) for value in vals]
+                # Convert the vector to a NumPy array
+                rh_vector = np.array(rh_vector)
+                rh_vectors.append(rh_vector)
+            _temp = len(rh_vectors)
+            if _temp != num_R:
+                print('Expected ', num_R, ' right hand sides but only found ', _temp)
+            #-------------------------------------------------
+
+            # factor the matrix
+            temp = factor(matrix, dim)
+            if temp == -1:
+                print('The matrix provided is singular')
+                continue
+            else:
+                lower, upper, pivot = temp
+
+            # combine LU
+            LU = np.zeros((dim, dim))
+            LU[np.tril_indices(dim)] = lower[np.tril_indices(dim)]
+            LU[np.triu_indices(dim)] = upper[np.triu_indices(dim)]
+
+            # print the contents to the console
+            print('LU Matrix:', '\n', '------------------------', '\n', LU, '\n')
+            print('Solution set: ', '\n', '------------------------')
+            # solve each right hand side vector & output results to console
+            for rhv in rh_vectors:
+                print('Right hand side: ', rhv) 
+                print('Solution: ', solve(lower, upper, dim, pivot, rhv))
+                print('------------------------')
+if __name__ == "__main__":
+    main()
+				</code>
+			</pre>
+		</main>
+		
+		
+	</body>
+</html>

@@ -1,0 +1,576 @@
+*
+{
+	margin: 0px;
+	padding: 0px;
+}
+body{
+	background-color: black;
+}
+div.maincircle
+{
+	display: flex;
+	border-radius: 50%;
+	border: 20px solid black;
+	width: 500px;
+	height: 500px;
+	position: relative;
+	background-color: #ED194B;
+	overflow: hidden;
+}
+div.mainboxcontainer
+{
+	display: flex;
+	justify-content: center;
+	height: 100vh;
+	
+}
+div.mainbox
+{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 600px;
+	height: 100vh;
+	background-image:linear-gradient(to top right,black, #281F27, #8C2048);
+	position: relative;
+	
+}
+div.reflone
+{
+	width: 200px;
+	height: 100px;
+	border-radius: 0 0 100px 100px;
+	background-image: radial-gradient(circle, #F2CE1B, #F9913D);
+	transform: skewY(5deg);
+	position: absolute;
+	box-sizing: border-box;
+	left: 200px;
+	top: 0px;
+}
+div.dragonbase
+{
+	background-image: linear-gradient(to bottom left, black, #242230);
+	width: 400px;
+	height: 200px;
+	border-radius: 0 0 200px 200px;
+	transform: skewY(2deg);
+	top: 420px;
+	position: absolute;
+	box-sizing: border-box;
+	left: 55px;
+	z-index: 1;
+}
+div.dragonbodyone, div.dragonbodytwo
+{
+	background-color: black;
+	box-sizing: border-box;
+	width: 200px;
+	height: 200px;
+	border-radius: 50%;
+	position: absolute;
+}
+div.dragonbodyone
+{
+	top: 280px;
+	left: 250px;
+}
+div.dragonbodytwo
+{
+	top: 280px;
+	left: 100px;
+}
+div.dragonbodybgbox
+{
+	width: 140px;
+	height: 50px;
+	background-color: #ED194B;
+	box-sizing: border-box;
+	border-radius: 0 40% 20% 0;
+	position: absolute;
+	top: 365px;
+	left: 61px;
+}
+div.dragononetwoconnector
+{
+	width: 149px;
+	height: 50px;
+	background-color: black;
+	box-sizing: border-box;
+	position: absolute;
+	top: 280px;
+	left: 193px;
+}
+div.dragonneckleft
+{
+	background-color: black;
+	box-sizing: border-box;
+	width: 100px;
+	height: 200px;
+	position: absolute;
+	border-radius: 20% 10% 0 90%;
+	top: 165px;
+	left: 50px;
+}
+div.dragonneckright
+{
+	background-color: black;
+	box-sizing: border-box;
+	width: 120px;
+	height: 150px;
+	position: absolute;
+	border-radius: 0 50% 0 0;
+	top: 165px;
+	left: 83px;
+	
+}
+div.rightneckoverlay
+{
+	background-color: #ED194B;
+	box-sizing: border-box;
+	position: absolute;
+	border-radius: 50%;
+	width: 125px;
+	height: 125px;
+	top: 155px;
+	left: 148px;
+}
+div.headrectangle
+{
+	background-color: black;
+	box-sizing: border-box;
+	position: absolute;
+	border-radius: 20% 20% 0 0;
+	width: 230px;
+	height: 75px;
+	top: 62px;
+	left: 88px;
+	transform: skewY(-5deg);
+}
+div.leftneckoval
+{
+	background-color: black;
+	box-sizing: border-box;
+	position: absolute;
+	border-radius: 50%;
+	width: 75px;
+	height: 150px;
+	top: 84px;
+	left: 52px;
+	transform: skewY(-25deg);
+}
+div.rightneckoval
+{
+	background-color: black;
+	box-sizing: border-box;
+	position: absolute;
+	border-radius: 0 0 50% 0;
+	width: 50px;
+	height: 50px;
+	top: 127px;
+	left: 110px;
+}
+div.leftjawoval
+{
+	background-color: black;
+	box-sizing: border-box;
+	position: absolute;
+	border-radius: 50% 50% 90% 50%;
+	width: 97px;
+	height: 80px;
+	top: 100px;
+	left: 165px;
+}
+div.snout
+{
+	background-color: black;
+	box-sizing: border-box;
+	position: absolute;
+	border-radius: 60% 10% 70% 0%;
+	width: 190px;
+	height: 140px;
+	top: 85px;
+	left: 242px;
+	transform: skewY(35deg);
+}
+div.horn
+{
+	box-sizing: border-box;
+	background-color: black;
+	border-radius: 30% 90% 0 0;
+	position: absolute;
+	width: 60px;
+	height: 52px;
+	top: 68px;
+	left: 294px;
+	transform: skewY(-20deg);
+}	
+div.snoutshapetop
+{
+	background-color: #ED194B;
+	box-sizing: border-box;
+	position: absolute;
+	border-radius: 80% 0% 40% 70%;
+	width: 100px;
+	height: 44px;
+	top: 111px;
+	left: 335px;
+	transform: skewY(30deg);
+}
+div.whiskerone
+{
+	position: absolute;
+	background-color: black;
+	height: 31px;
+	width: 15px;
+	top: 344px;
+	left: 100px;
+	border-radius: 0 0 90% 10%;
+	transform: skewX(-25deg);
+	transform: skewY(-5deg);
+}
+div.whiskertwo
+{
+	position: absolute;
+	background-color: black;
+	height: 65px;
+	width: 40px;
+	top: 298px;
+	left: 42px;
+	border-radius: 90% 0 90% 10%;
+}
+div.whiskertwoshape
+{
+	position: absolute;
+	background-color: #ED194B;
+	box-sizing: border-box;
+	height: 60px;
+	width: 30px;
+	top: 306px;
+	left: 36px;
+	border-radius: 50% 10% 80% 30%;
+}
+div.whiskerthree
+{
+	box-sizing: border-box;
+	background-color: black;
+	border-radius: 30% 0% 0 40%;
+	position: absolute;
+	width: 60px;
+	height: 42px;
+	top: 206px;
+	left: 23px;
+	transform: skewY(-55deg);
+}
+div.whiskerthreeshape
+{
+	position: absolute;
+	background-color: #ED194B;
+	box-sizing: border-box;
+	height: 75px;
+	width: 35px;
+	top: 193px;
+	left: 8px;
+	border-radius: 50%
+}
+div.whiskerfour
+{
+	box-sizing: border-box;
+	background-color: black;
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	top: 95px;
+	left: 57px;
+	border-radius: 40% 0 0 30%;
+}
+div.whiskerfourshape
+{
+	position: absolute;
+	background-color: #ED194B;
+	box-sizing: border-box;
+	width: 18px;
+	height: 15px;
+	top: 86px;
+	left: 58px;
+	border-radius: 50%;
+}
+div.whiskerfive
+{
+	box-sizing: border-box;
+	background-color: black;
+	position: absolute;
+	width: 20px;
+	height: 70px;
+	transform: skewY(-55deg);
+	top: 19px;
+	left: 138px;
+	border-radius: 30% 0% 80% 60%;
+}
+div.whiskerfiveshape
+{
+	position: absolute;
+	background-color: #ED194B;
+	box-sizing: border-box;
+	border-radius: 50%;
+	width: 22px;
+	height: 42px;
+	top: 24px;
+	left: 148px;
+}
+div.whiskersix
+{
+	box-sizing: border-box;
+	background-color: black;
+	position: absolute;
+	width: 37px;
+	height: 70px;
+	transform: skewY(-55deg);
+	top: 3px;
+	left: 163px;
+	border-radius: 30% 0% 80% 60%;
+}
+div.whiskersixshape
+{
+	position: absolute;
+	background-color: #ED194B;
+	box-sizing: border-box;
+	border-radius: 50% 10% 50% 50%;
+	width: 22px;
+	height: 46px;
+	top: 16px;
+	left: 178px;
+}
+div.whiskerseven
+{
+	position: absolute;
+	background-color: black;
+	height: 31px;
+	width: 25px;
+	top: 43px;
+	left: 236px;
+	border-radius: 90% 10% 80% 90%;
+	transform: skewX(-15deg);
+}
+div.eye
+{
+	position: absolute;
+	background-image: linear-gradient(to bottom, #F2CE1B, #F9913D, #ED194B);
+	box-sizing: border-box;
+	border-radius: 50% 40% 10% 40%;
+	transform: skewY(20deg);
+	height: 19px;
+	width: 38px;
+	top: 88px;
+	left: 272px;
+}
+div.jawshapebottom
+{
+	position: absolute;
+	background-color: #ED194B;
+	box-sizing: border-box;
+	border-radius: 50%;
+	height: 40px;
+	width: 125px;
+	top: 182px;
+	left: 246px;
+	transform: skewY(30deg);
+}
+div.mouthone
+{
+	position: absolute;
+	background-color: #ED194B;
+	box-sizing: border-box;
+	border-radius: 170% 0% 170% 0%;
+	height: 39px;
+	width: 40px;
+	top: 123px;
+	left: 260px;
+	transform: skewY(35deg);
+}
+div.mouthtwo
+{
+	position: absolute;
+	background-color: #ED194B;
+	box-sizing: border-box;
+	border-radius: 55% 0% 80% 0%;
+	height: 35px;
+	width: 109px;
+	transform: skewY(35deg);
+	top: 153px;
+	left: 275px;
+}
+div.mouththree
+{
+	position: absolute;
+	background-color: #ED194B;
+	box-sizing: border-box;
+	border-radius: 60% 20% 50% 155%;
+	height: 27px;
+	width: 81px;
+	transform: skewY(10deg);
+	top: 189px;
+	left: 351px;
+}
+div.mouthshape
+{
+	position: absolute;
+	background-color: black;
+	box-sizing: border-box;
+	border-radius: 120% 0% 120% 30%;
+	height: 30px;
+	width: 57px;
+	top: 174px;
+	left: 375px;
+	transform: skewY(30deg);
+}
+div.snouthornone
+{
+	position: absolute;
+	background-color: black;
+	height: 31px;
+	width: 15px;
+	top: 144px;
+	left: 373px;
+	border-radius: 0 90% 0% 10%;
+	transform: skewY(25deg);
+}
+div.snouthorntwo
+{
+	position: absolute;
+	background-color: black;
+	height: 21px;
+	width: 15px;
+	top: 167px;
+	left: 417px;
+	border-radius: 80% 20% 0% 10%;
+	transform: skewY(35deg);
+}
+div.nose
+{
+	position: absolute;
+	background-color: #ED194B;
+	box-sizing: border-box;
+	border-radius: 90% 10% 150% 0%;
+	height: 13px;
+	width: 22px;
+	top: 164px;
+	left: 371px;
+	transform: skewY(25deg);
+}
+div.tonguebox
+{
+	position: absolute;
+	background-color: black;
+	box-sizing: border-box;
+	height: 30px;
+	width: 23px;
+	top: 192px;
+	left: 395px;
+	border-radius: 0 90% 0 0;
+}
+div.tonguehole
+{
+	position: absolute;
+	background-color: #ED194B;
+	box-sizing: border-box;
+	height: 11px;
+	width: 11px;
+	top: 208px;
+	left: 399px;
+	border-radius: 50% 50% 40% 90%;
+}
+div.tongue
+{
+	position: absolute;
+	background-color: black;
+	box-sizing: border-box;
+	border-radius: 30% 0% 50% 30%;
+	height: 31px;
+	width: 66px;
+	top: 256px;
+	left: 414px;
+	transform: skewY(60deg);
+}
+div.tonguebottom
+{
+	position: absolute;
+	background-color: black;
+	box-sizing: border-box;
+	border-radius: 30% 0% 0% 0%;
+	height: 30px;
+	width: 30px;
+	top: 301px;
+	left: 479px;
+	transform: skewY(-5deg);
+}
+div.tongueshape
+{
+	position: absolute;
+	background-color: #ED194B;
+	box-sizing: border-box;
+	height: 23px;
+	width: 66px;
+	top: 252px;
+	left: 419px;
+	border-radius: 50% 50% 50% 50%;
+	transform: skewY(60deg);
+}
+div.tongueboxtwo
+{
+	position: absolute;
+	background-color: black;
+	box-sizing: border-box;
+	height: 36px;
+	width: 47px;
+	top: 227px;
+	left: 439px;
+	border-radius: 0 20% 50% 40%;
+}
+div.tongueshapetwo
+{
+	position: absolute;
+	background-color: #ED194B;
+	box-sizing: border-box;
+	height: 31px;
+	width: 38px;
+	top: 225px;
+	left: 438px;
+	border-radius: 0% 50% 30% 30%;
+}
+div.whiskerpatch
+{
+	position: absolute;
+	background-color: #ED194B;
+	box-sizing: border-box;
+	border-radius: 50%;
+	height:  30px;
+	width: 20px;
+	top: 244px;
+	left: 18px;
+	transform: skewY(-30deg);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>Edward Haymore</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, inital-scale=1.0, minimum-scale=1.0, user-scalable=no">
+		<link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css">
+		<link href="../css/style.css" rel="stylesheet" type="text/css">
+		<link href="../css/prism.css" rel="stylesheet" type="text/css">
+		<script src="../js/jquery-3.5.1.min.js"></script>
+		<script src="../js/bootstrap.bundle.js"></script>
+		<script src="../js/prism.js"></script>
+	</head>
+	<body>
+		<nav class="navbar navbar-dark navbar-expand-md p-md-3">
+			<a href="../index.html"class="navbar-brand text-muted">Edward Haymore</a>
+			<button class="navbar-toggler" data-target="#nav-menu" data-toggle="collapse"><span class="navbar-toggler-icon"></span></button>
+			<div id="nav-menu" class="collapse navbar-collapse justify-content-center">
+				<ul class="navbar-nav">
+					<li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+					<li class="nav-item"><a href="resume.html" class="nav-link">Resume</a></li>
+				</ul>
+			</div>
+		</nav>
+		<main class="jumbotron shadow-lg">
+			<h1>Dijkstra's Shortest path</h1>
+			<pre>
+				<code class='language-Python'>
+					def dsp(self, src, dest) -> tuple:
+        ''' Return a tuple (path length , the list of vertices on the path from dest
+        back to src). If no path exists, return the tuple (math.inf, empty list.)
+        '''
+        #initializes all vertices' distances to infinity (∞), all vertices' predecessors to null,
+        unvisited_v = list()
+        for vert in self.map:
+            self.map[vert].pred = None
+            self.map[vert].dist = math.inf
+        #enqueues all vertices into a queue of unvisited vertices
+            unvisited_v.append(self.map[vert])
+        #assigns the start vertex's distance with 0.
+        start_v = self.map[src]
+        start_v.dist = 0
+        dest_v = self.map[dest]
+        #While the queue is not empty, the algorithm dequeues the vertex with the shortest distance.
+        while unvisited_v:
+            shortest_dist_v = unvisited_v[0]#var for which is shortest
+            for vrt_x in unvisited_v:
+                if shortest_dist_v.dist > vrt_x.dist:
+                    shortest_dist_v = vrt_x
+            unvisited_v.remove(shortest_dist_v)
+            #For each adjacent vertex
+            for adj_vx in shortest_dist_v.adj:
+                #computes the distance of the path from the start vertex to the
+                #current vertex and continuing on to the adjacent vertex
+                adj_vx = self.map[adj_vx]
+                path_one = 0
+                path_one += shortest_dist_v.dist
+                dist_to = shortest_dist_v.get_wt(adj_vx.label)
+                path_one += dist_to
+                #If that path's distance is shorter than the adjacent vertex's current distance
+                if path_one < adj_vx.dist:
+                    #shorter path has been found
+                    adj_vx.dist = path_one#adjacent vertex's current distance is updated
+                    adj_vx.pred = shortest_dist_v#vertex's predecessor pointer is pointed to the current vertex.
+        #list of vertices on the path from dest back to src). If no path exists, return the tuple (math.inf, empty list.)
+        ret_dist = dest_v.dist
+        ret_l = list()
+        flag_f = False
+        while dest_v.pred:
+            ret_l.append(dest_v.label)
+            if dest_v.label == src:
+                flag_f = True
+                break
+            dest_v = dest_v.pred
+        if dest_v.label == src:
+            flag_f = True
+            ret_l.append(dest_v.label)
+        if flag_f:
+            ret_l.reverse()
+            return (ret_dist, ret_l)
+        else:
+            return (math.inf, list())
+				</code>
+			</pre>
+		</main>
+		
+		
+	</body>
+</html>

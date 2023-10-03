@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>Tic-Tac-Toe</title>
+		<meta charset="UTF-8">
+		<link href="css/style.css" rel="stylesheet" type="text/css">
+		<script src="js/script.js"></script>
+	</head>
+	<body>
+		<h2 class="rt">tic-tac-toe</h2>
+		<button id="btn" class="hide" onclick="resetGame()">reset</button>
+		<h2 id="turndisplay">Enter the Player's names</h2>
+		<main id="board">
+		<form>
+			<input class="show" id="player1" type="text" name="player1" placeholder="Player 1">
+			<input class="show" id="player2" type="text" name="player2" placeholder="Player 2">
+			<input class="show" id="send" type ="submit" onclick="newGame()">
+			<input class="show" id="clear" type ="reset">
+		</main>
+		<h5 id="scoreboard"></h5>
+	</body>
+</html>

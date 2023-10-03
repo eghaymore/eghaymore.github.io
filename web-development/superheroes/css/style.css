@@ -1,0 +1,59 @@
+*
+{
+	border: 0px;
+	padding: 0px;
+	font-family: arial;
+	background: rgb(72,117,110);
+	color: white;
+}
+h1,h2,h3,h4,h5,h6
+{
+	font-family: georgia;
+	text-align: center;
+}
+h1
+{
+	font-size: 36px;
+	margin: 0px -8px;
+	padding: 15px 0px;
+}
+h2
+{
+	font-size: 24px;
+	width: 950px;
+	padding: 10px;
+	margin: 15px auto;
+}
+h1.DCheadings
+{
+	background-color: rgba(150,247,232,.80);
+}
+h1.Mheadings
+{
+	background-color: rgba(76,245,219,.37);
+}
+h2.DCheadings
+{
+	border: solid teal 1px;
+	background-color: rgba(150,247,232,.46);
+}
+h2.Mheadings
+{
+	border: solid seagreen 1px;
+	background-color: rgba(36,117,105,.97);
+}
+p
+{
+	width: 971px;
+	font-size: 18px;
+	text-align: justify;
+	margin: 10px auto;
+}
+#blue
+{
+	color: blue;
+}
+div.beavis
+{
+	width: 1071px;
+}

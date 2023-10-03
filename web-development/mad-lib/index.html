@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang ="en">
+	<head>
+		<meta charset="utf-8"/>
+		<title>Mad-Lib</title>
+		<link href="css/style.css" rel="stylesheet" type="text/css">
+		<script src="js/script.js"></script>
+	</head>
+	<body>
+		<h1 id="fate"></h1>
+		<p id="warmcold"></p>
+		<script>
+			if (oone == 0)
+			{
+				document.getElementById("fate").innerHTML = "Your fate is decided";
+				document.getElementById("warmcold").innerHTML = "Hello tropical world! The waves are peaceful. Whilst sitting upon the " + adj1 + " beach one may be inclined to " + 
+				verb1 + ", but that is a mistake my dear " + noun2 + ". You will instead be " + verb2 + " as you head east towards " + adj2+ " mountain point." +
+				" There you will find your " + adj3 + " calling and become a " + noun3 + ".";
+				
+			}	
+			else
+			{
+				document.getElementById("fate").innerHTML = "Your destiny is sealed";
+				document.getElementById("warmcold").innerHTML = "Hello winter world! You may be inclined to decline your inclination to " + adv1 + " " + verb1 + ", however my good " + 
+				noun2 +"s, you should be making a " + adj1 + " mistake. You see, although you may consider yourself a " + noun1 + " it is far too cold and " + adj2 + 
+				" for that kind of " + verb2 + ". Take heed and go west to become a " + adj3 + " " + noun3 + " to humanity.";
+			}
+		</script>
+	</body>
+</html>

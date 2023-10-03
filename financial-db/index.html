@@ -1,0 +1,25 @@
+<h1>Financial-db</h1>
+<p>Creating the database</p>
+<p>Step 1. Start a RDBMS. In the demo I use mysql.</p>
+<p>Step 2. Run the create-fin-tables.sql script</p>
+<p><img src="https://github.com/edwardedwardedward3/Financial-db/assets/90068254/dd8888c3-2b3a-48a9-bf26-ddedc3224c3a" alt="step1" /></p>
+<p>Step 3. Run the populatecats.sql script. This should take less than 10 seconds to complete.<br />
+There are 7 Sectors and 183 Industries currently.<br />
+<img src="https://github.com/edwardedwardedward3/Financial-db/assets/90068254/d748b261-a2e5-467d-b019-8d7253c9b356" alt="step2" /></p>
+<p>Step 4. Run the populatestocks.sql script. This should take less than 30 seconds.</p>
+<h2>At this point the database is built. The demo will continue to show some example queries.</h2>
+<p>There are just short of 500 stocks currently.</p>
+<p>This query will give us a general overview of the companies.</p>
+<p>select a.Symbol, assetname, description from stock a join asset b on a.Symbol = b.Symbol limit 10;<br />
+<img src="https://github.com/edwardedwardedward3/Financial-db/assets/90068254/ab870970-4ac7-49f1-89ab-c850eef66553" alt="exq1" /></p>
+<p>Look at financial metrics of the technology sector</p>
+<p>select Symbol, MarketCapitalization, EBITDA, PERatio, BookValue, DividendYield, EPS, RevenueTTM, TrailingPE, ForwardPE from stock a join Sector b on a.Sectorid = b.Sectorid where SectorDesc = 'TECHNOLOGY';<br />
+<img src="https://github.com/edwardedwardedward3/Financial-db/assets/90068254/e47ca118-7070-4b3b-852e-0548cf531ea3" alt="exq2" /></p>
+<p>Look at dividend yields of cigarette companies</p>
+<p>select Symbol, DividendYield from stock a join Industries b on a.Industryid = b.Industryid where IndustryDesc='CIGARETTES';</p>
+<p>Look at P/E ratios of mining and gold and silver ore producing companies</p>
+<p>select Symbol, PERatio from stock a join Industries b on a.Industryid = b.Industryid where IndustryDesc = 'METAL MINING' or IndustryDesc = 'MINING &amp; QUARRYING OF NONMETALLIC MINERALS (NO FUELS)' or IndustryDesc = 'GOLD AND SILVER ORES';</p>
+<p><img src="https://github.com/edwardedwardedward3/Financial-db/assets/90068254/d6140712-1c27-4626-9d0d-bbc93992b294" alt="exq3" /></p>
+<p>Look at financial metrics of the energy sector</p>
+<p>select Symbol, MarketCapitalization, EBITDA, PERatio, BookValue, DividendYield, EPS, RevenueTTM, TrailingPE, ForwardPE from stock a join Sector b on a.Sectorid = b.Sectorid where SectorDesc = 'ENERGY &amp; TRANSPORTATION';</p>
+<p><img src="https://github.com/edwardedwardedward3/Financial-db/assets/90068254/7891a593-210d-4ee8-b8ff-f63db659fcf2" alt="exq4" /></p>
