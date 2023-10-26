@@ -1,5 +1,8 @@
 *{margin:0; padding:0; box-sizing:border-box;user-select:none;}
 html {background-color: darkgray; --bg-color:#af3257;--mainfont:whitesmoke;--tertiary:#033159;--lightone:#0F698C;}
+.subitem {margin-left:2vw;}
+.bullet {margin-left:5vw; color:var(--mainfont);}
+.cbullet {margin-left:7vw; color:var(--mainfont);}
 body, nav, .jumbotron, aside {width:96vw;}
 body {height: 100vh; margin: 0 auto; background-color: darkgray;}
 nav {background: linear-gradient(to bottom, var(--tertiary), var(--lightone)); border-radius: 10px; margin-bottom: 1vh;}
@@ -10,11 +13,12 @@ div.reflwrap {display: flex; justify-content:center; text-align: center;}
 label#refllabel {font-size: 24px; color: gray; padding: 5px;}
 label#refllabel:hover {cursor:pointer; color: yellow;}
 #mymsg1 {display:none;}
-#mymsg2 {padding-left:4vw;display:none;}
+#mymsg2 {padding-left:4vw;display:none;color:var(--mainfont);}
 div.jumbotron {background-color:var(--lightone);}
 .jumbotron{margin-bottom:.5rem;}
 main a{color:var(--mainfont);}
-h4, h5, #mymsg2 {color:var(--mainfont);}
+h1, h2, h3, h4, h5 {color:var(--mainfont);}
+
 blockquote::before {content:'"';}
 blockquote::after {content:'"';}
 @media only screen and (min-width:576px)
