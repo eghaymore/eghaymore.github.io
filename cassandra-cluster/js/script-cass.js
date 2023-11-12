@@ -9,44 +9,20 @@ function showMyDetails(mousedLink)
 	//set mymsg to string value from var
 	switch (mousedLink.innerText)
 	{
-		case 'Financial Database':
-			msg1="Financial Database";
-			msg2="Mysql";
+		case "Keypspace Management":
+			msg1="Update, Insert, Delete scripts";
+			msg2="Bash";
 			break;
-		case 'Linear Regression':
-			msg1="Linear Regression";
-			msg2="Jupyter Notebook";
+		case 'Demo':
+			msg1="Some queries";
+			msg2="Cqlsh";
 			break;
-		case 'Algorithms':
-			msg1="Algorithms";
-			msg2="Search, Sort, etc";
+		case 'Setup':
+			msg1="Database setup";
+			msg2="Installation guide";
 			break;
-		case 'Data Structures':
-			msg1="Data Structures";
-			msg2="Stack, tree, linkedlist implementations";
-			break;
-		case 'Web Development':
-			msg1="Web Development";
-			msg2="Front-end web development projects";
-			break;
-		case 'Taylor Approximation':
-			msg1="Taylor Approximation";
-			msg2="Python";
-			break;
-		case 'Backpropagation Demo':
-			msg1="Backpropagation Demo";
-			msg2="Jupyter Notebook";
-			break;
-		case 'LU Factorization':
-			msg1="LU Factorization";
-			msg2="Python";
-			break;
-		case 'Cassandra':
-			msg1="2-Node Cassandra Cluster";
-			msg2="Bash, Python, Cqlsh";
-			break;
-		case 'Adaptive Quadrature':
-			msg1="Adaptive Quadrature";
+		case 'Query Tool':
+			msg1="Query Tool";
 			msg2="Python";
 			break;
 	}

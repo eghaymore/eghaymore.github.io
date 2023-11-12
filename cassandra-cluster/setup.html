@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>Edward Haymore</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, inital-scale=1.0, minimum-scale=1.0, user-scalable=no">
+		<link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css">
+		<link href="../css/style.css" rel="stylesheet" type="text/css">
+		<link href="../css/prism.css" rel="stylesheet" type="text/css">
+		<script src="../js/jquery-3.5.1.min.js"></script>
+		<script src="../js/bootstrap.bundle.js"></script>
+		<script src="../js/prism.js"></script>
+	</head>
+	<body>
+		<nav class="navbar navbar-dark navbar-expand-md p-md-3">
+			<a href="../index.html"class="navbar-brand text-muted">Edward Haymore</a>
+			<button class="navbar-toggler" data-target="#nav-menu" data-toggle="collapse"><span class="navbar-toggler-icon"></span></button>
+			<div id="nav-menu" class="collapse navbar-collapse justify-content-center">
+				<ul class="navbar-nav">
+					<li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+					<li class="nav-item"><a href="resume.html" class="nav-link">Resume</a></li>
+				</ul>
+			</div>
+		</nav>
+		<main class="jumbotron shadow-lg">
+			<h1>Setup</h1>
+			<pre class="command-line"
+			data-user="cassandrauser"
+     		data-filter-output="20-22"
+     		data-continuation-str="\" >
+				<code class="language-bash">
+# Install cassandra: https://cassandra.apache.org/doc/stable/cassandra/getting_started/installing.html
+
+# Edit config file in directory: conf/cassandra.yaml
+# 1: set seeds to list of all ip addresses in cluster
+# 2: set listen_address to current node ip address
+# 3: set endpoint_snitch to RackInferringSnitch
+
+# ----------------------------------------------------------------
+# Start cassandra in background (run on each node)
+nohup cassandra -f &
+
+# OR
+
+# Start cassandra and show log in terminal (run on each node)
+cassandra -f
+# ------------------------------------------------------------------
+
+# Verify node is listening on port 7000:
+netstat -tulpn | grep 7000
+# (Not all processes could be identified, non-owned process info
+# will not be shown, you would have to be root to see it all.)
+# tcp        0      0 &ltsome_ip_addr:some_port&gt      x.x.x.x:*               LISTEN      xxxxxx/java
+
+# This error sometimes happens:
+# ERROR [main] 2023-11-11 12:48:50,550 CassandraDaemon.java:911 - Cannot start node if snitch's data center (168) differs from previous data center (datacenter1). Please fix the snitch configuration, decommission and rebootstrap this node or use the flag -Dcassandra.ignore_dc=true.
+
+# Just try again with these flags:
+cassandra -f -Dcassandra.ignore_dc=true -Dcassandra.ignore_rack=true
+
+# Check status: (you should see both nodes)
+nodetool status
+# Datacenter: 168
+# ===============
+# Status=Up/Down
+# |/ State=Normal/Leaving/Joining/Moving
+# --  Address        Load        Tokens  Owns (effective)  Host ID                               Rack
+# UN  &ltsome_ip_addr&gt  105.35 KiB  16      100.0%            xxxxxxx&ltsome_hostid&gtxxxxxxxxxxxx  1
+# UN  &ltsome_ip_addr&gt  69.04 KiB   16      100.0%            xxxxxxx&ltsome_hostid&gtxxxxxxxxxxxx  1
+
+
+
+				</code>
+				</pre>
+				<pre>
+				<code class="language-sql">
+-- Create a Keyspace (like a namespace in Oracle or Postgresql)
+CREATE KEYSPACE contacts WITH replication = {'class': 'SimpleStrategy', 'replication_factor' : 2 } AND durable_writes = true;
+
+-- Use a keyspace
+use contacts;
+
+-- List keyspaces
+DESCRIBE KEYSPACES;
+
+-- List tables
+DESCRIBE TABLES;
+
+-- Create a table to search by contactid
+CREATE TABLE contacts.contacts
+(
+contactID int,
+lastName text,
+firstName text,
+areacode text,
+phone text,
+email text,
+PRIMARY KEY (contactid)
+);
+
+-- Copy data
+COPY contacts.contacts (contactID, firstName, lastName, areacode, phone,
+email) from '/tmp/contacts.csv' WITH DELIMITER = '~' AND HEADER = FALSE;
+
+-- Make table to query by (areacode, phonenumber)
+CREATE TABLE contacts.contacts_areacode_phone
+(
+contactID int,
+lastName text,
+firstName text,
+areacode text,
+phone text,
+email text,
+PRIMARY KEY (areacode, phone)
+);
+
+-- Copy data
+COPY contacts.contacts_areacode_phone (contactID, firstName, lastName, areacode, phone,
+email) from '/tmp/contacts.csv' WITH DELIMITER = '~' AND HEADER = FALSE;
+
+-- Make table to query by (lastname, firstname)
+CREATE TABLE contacts.contacts_lastname_firstname
+(
+contactID int,
+lastName text,
+firstName text,
+areacode text,
+phone text,
+email text,
+PRIMARY KEY (lastName, firstName)
+);
+
+-- Copy data
+COPY contacts.contacts_lastname_firstname (contactID, firstName, lastName, areacode, phone,
+email) from '/tmp/contacts.csv' WITH DELIMITER = '~' AND HEADER = FALSE;
+
+-- Make table to query by email
+CREATE TABLE contacts.contacts_email
+(
+contactID int,
+lastName text,
+firstName text,
+areacode text,
+phone text,
+email text,
+PRIMARY KEY (email)
+);
+
+-- Copy data
+COPY contacts.contacts_email (contactID, firstName, lastName, areacode, phone,
+email) from '/tmp/contacts.csv' WITH DELIMITER = '~' AND HEADER = FALSE;
+
+-- Install Cassandra module (For use with cassandra_query.py)
+pip install cassandra-driver
+				</code>
+			</pre>
+			<pre class="command-line"
+			data-user="cassandrauser"
+     		data-filter-output="20-22"
+     		data-continuation-str="\" >
+				<code class="language-bash">
+# Verify that a record is stored on both nodes
+# nodetool -h localhost getendpoints &ltkeyspace_name&gt &lttable_name&gt &ltnth_record&gt
+# &ltip_address_where_record_is&gt
+# &ltip_address_where_record_is&gt
+
+nodetool -h localhost getendpoints contacts contacts 1
+# &ltsome_ip_addr&gt
+# &ltsome_ip_addr&gt
+				</code>
+			</pre>
+			
+		</main>
+		
+		
+	</body>
+</html>
