@@ -46,7 +46,7 @@ function showMyDetails(mousedLink)
 			msg2="Python";
 			break;
 		case 'Cassandra':
-			msg1="2-Node Cassandra Cluster";
+			msg1="Cassandra Cluster";
 			msg2="Bash, Python, Cqlsh";
 			break;
 		case 'Adaptive Quadrature':
