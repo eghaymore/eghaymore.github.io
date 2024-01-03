@@ -17,6 +17,10 @@ function showMyDetails(mousedLink)
 			msg1="Linear Regression";
 			msg2="Jupyter Notebook";
 			break;
+		case 'Softmax Regression':
+			msg1="Softmax Regression";
+			msg2="Jupyter Notebook";
+			break;
 		case 'Cockroachdb':
 			msg1="Cockroachdb cluster";
 			msg2="Bash, Python, SQL";
