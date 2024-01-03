@@ -53,6 +53,10 @@ function showMyDetails(mousedLink)
 			msg1="Adaptive Quadrature";
 			msg2="Python";
 			break;
+		case 'Sorts':
+			msg1="Mergesort, Quicksort";
+			msg2="Java";
+			break;
 	}
 	
 	document.getElementById('mymsg1').innerText=msg1+": ";
