@@ -24,6 +24,15 @@
 		</nav>
 		<main class="jumbotron shadow-lg">
 			<h1>LU Factorization</h1>
+			<p>
+			<h6 class="text-light pl-md-3">Given matrix A, the LU decomposition of A is given by LU=A where L is a lower triangular matrix and U is an upper triangular matrix.</h6>
+			<h5 class="lead" class="text-decoration-none">Pivoting Strategy</h5>
+			<h6 class="text-light pl-md-3">This implementation uses a partial pivoting strategy to avoid numerical instability. This is useful because during the guassian elimination process, roundoff error can result in very small values that are analytically 0, and using them as the pivot element would introduce large error. The partial pivoting works by finding the largest magnitude element in the pivot column, starting from the row down, and making that element the pivot.</h6>
+			<h5 class="lead" class="text-decoration-none">How it works</h5>
+			<h6 class="text-light pl-md-3">The idea is to use gaussian elimination to reduce A to an upper triangular matrix U. The lower triangular matrix L is the product of all the inverse elementary matrices used during row reduction. This is captured by the update rule on line 41. The reason for the negation on line 41 is when you perform an elimination in the original matrix A by subtracting a multiple of one row from another, the corresponding operation in the lower matrix involves adding a multiple of one row to another. The negation of coeffcoeff ensures that the signs match during this addition operation. It aligns the elimination operation in both matrices.</h6>
+			<h5 class="lead" class="text-decoration-none">Solving for the right hand vector</h5>
+			<h6 class="text-light pl-md-3">Now that A is represented as LU, performing a forward and backward pass will solve the system of equations Ax=b</h6>
+			</p>
 			<pre>
 				<code class='language-Python'>
 import os
@@ -115,12 +124,7 @@ def solve(l, u, n, pivot, b):
     return sol
 
 def main():
-    # Change the working directory to the current folder if needed
-    new_directory = "lu-factorization"
-    os.chdir(new_directory)
-
     file_list = ['lu1.dat', 'lu2.dat']
-    # process file
     # Open the .dat file in read mode
     for file_path in file_list:
         with open(file_path, 'r') as file:
