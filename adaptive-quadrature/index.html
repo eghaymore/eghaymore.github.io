@@ -24,6 +24,10 @@
 		</nav>
 		<main class="jumbotron shadow-lg">
 			<h1>Adaptive Quadrature</h1>
+			<h6 class="text-light pl-md-3">From Wikipedia: "Adaptive quadrature is a numerical integration method in which the integral of a function f ( x ) f(x) is approximated using static quadrature rules on adaptively refined subintervals of the region of integration. Generally, adaptive algorithms are just as efficient and effective as traditional algorithms for "well behaved" integrands, but are also effective for "badly behaved" integrands for which traditional algorithms may fail. "</h6>
+			
+			<h5 class="lead" class="text-decoration-none">How it works</h5>
+			<h6 class="text-light pl-md-3">This implementation uses simpson's rule and a varying step size h to approximate integration. It is useful to note that the error is O(h^4), so with the initial step size of (1/2), error will be on the order of (1/16)</h6>
 			<pre>
 				<code class='language-Python'>
 '''
@@ -40,7 +44,7 @@ def area(func, a, b, tol = 5.0 * 10**(-5)):# driver
     if not b&gt'a:
         a, b = b, a
         _func = func
-        func = lambda x: _func(x) * -1# test me
+        func = lambda x: _func(x) * -1
     # ---------------------------------------------
     h = .5 # initial step size
     global fevals
