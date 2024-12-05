@@ -57,6 +57,10 @@ function showMyDetails(mousedLink)
 			msg1="Mergesort, Quicksort";
 			msg2="Java";
 			break;
+		case 'CNN':
+			msg1="CNN for MNIST Dataset";
+			msg2="Pytorch";
+			break;
 	}
 	
 	document.getElementById('mymsg1').innerText=msg1+": ";
